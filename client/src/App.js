@@ -3,10 +3,10 @@ import "./App.css";
 
 import Party from "./components/party/Party";
 
-import { heroes } from "./utils/heroManager";
+import session from "./utils/gameSession";
 
 const App = () => {
-  const [party, setParty] = useState(heroes);
+  const [party, setParty] = useState(session.party);
 
   const heroChangePoints = (heroId, newValue, type) => {
     let newState = [...party];
@@ -16,7 +16,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Party party={heroes} heroChangePoints={heroChangePoints}></Party>
+      <Party party={party} heroChangePoints={heroChangePoints}></Party>
     </div>
   );
 };
