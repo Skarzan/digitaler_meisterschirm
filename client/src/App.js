@@ -1,14 +1,22 @@
-import React from "react";
-import logo from "./logo.svg";
+import React, { useState } from "react";
 import "./App.css";
-import Hero from "./components/Hero";
+
+import Party from "./components/party/Party";
 
 import { heroes } from "./utils/heroManager";
 
 const App = () => {
+  const [party, setParty] = useState(heroes);
+
+  const heroChangePoints = (heroId, newValue, type) => {
+    let newState = [...party];
+    newState.find(hero => hero.id === heroId)[type].current = newValue;
+    setParty(newState);
+  };
+
   return (
     <div className="App">
-      <Hero hero={heroes[0]}></Hero>
+      <Party party={heroes} heroChangePoints={heroChangePoints}></Party>
     </div>
   );
 };
