@@ -5,7 +5,11 @@ const GameSession = ({ session, heroChangePoints, leaveSession }) => {
   return (
     <div>
       <h1>{session.id}</h1>
-      <Party party={session.party} heroChangePoints={heroChangePoints}></Party>
+      <Party
+        name={session.name}
+        party={session.party}
+        heroChangePoints={heroChangePoints}
+      ></Party>
       <button onClick={() => leaveSession()}>Leave Session</button>
     </div>
   );

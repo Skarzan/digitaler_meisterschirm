@@ -1,10 +1,10 @@
 import React from "react";
 import Hero from "./Hero/Hero";
 
-const Party = ({ party, heroChangePoints }) => {
+const Party = ({ name, party, heroChangePoints }) => {
   return (
     <div className="Party">
-      <h2>Gruppe</h2>
+      <h2>{name}</h2>
       <div className="partyHeroes">
         {party.map(hero => {
           return (
