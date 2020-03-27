@@ -37,7 +37,7 @@ const Hero = ({ hero, heroChangePoints }) => {
         ></Bar>
       )}
       <div className="heroSchips">{`Schips: ${hero.schips.current}/${hero.schips.max}`}</div>
-      <div className="heroMoney">{`Money: ${hero.money}`}</div>
+      <div className="heroMoney">{`Geldbörse: ${hero.money}`}</div>
     </div>
   );
 };

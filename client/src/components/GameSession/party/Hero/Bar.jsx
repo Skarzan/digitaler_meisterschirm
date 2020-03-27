@@ -4,7 +4,7 @@ const Bar = ({ current, max, changeCurrentPoints, type }) => {
   const changeValue = e => {
     e.preventDefault();
     const newValue = e.target.value;
-    changeCurrentPoints(newValue, type);
+    changeCurrentPoints(parseInt(newValue), type);
   };
 
   return (

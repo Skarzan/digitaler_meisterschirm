@@ -1,7 +1,8 @@
 import { heroes } from "./heroManager";
 
 const session = {
-  id: "test",
+  id: "",
+  players: [],
   party: heroes,
   battle: {
     fighters: []
