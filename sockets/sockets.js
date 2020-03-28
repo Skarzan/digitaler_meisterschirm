@@ -32,6 +32,16 @@ module.exports.listen = function(app) {
 
       socket["sessionId"] = sessionId;
       console.log(sessions[sessionId]);
+
+      if (sessions[sessionId]) {
+        socket
+          .to(sessions[sessionId].users[0])
+          .emit("request session", socket.id);
+      }
+    });
+
+    socket.on("send session", function(session, id) {
+      socket.to(id).emit("set session", session);
     });
 
     socket.on("leave session", function() {

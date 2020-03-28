@@ -16,8 +16,16 @@ const App = () => {
       heroUpdatePoints(heroId, value, type);
     });
 
+    socketIO.on("request session", function(socketId) {
+      socketIO.emit("send session", session, socketId);
+    });
+
+    socketIO.on("set session", function(session) {
+      setSession(session);
+    });
+
     return () => {
-      socketIO.removeListener("heroChangePoints");
+      socketIO.removeAllListeners();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session]);

@@ -225,7 +225,7 @@ const heroes = [
     money: "1234"
   },
   {
-    id: "xusdfh2323",
+    id: "xu3232f7d3",
     name: "Wallmyr",
     ap: {
       current: 4,
