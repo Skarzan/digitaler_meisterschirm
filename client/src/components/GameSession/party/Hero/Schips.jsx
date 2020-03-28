@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { ReactComponent as SchipSVG } from "../../../../assets/icons/schip.svg";
-import { CSSTransitionGroup } from "react-transition-group"; // ES6
 
 import "./Schips.scss";
 
@@ -23,28 +22,23 @@ function Schips({ schips, changeCurrentSchips }) {
       <div className="schipIcon">
         <SchipSVG></SchipSVG>
         <div className="schipNumbers">{`${schips.current}/${schips.max}`}</div>
-        <CSSTransitionGroup
-          transitionName="fade-in"
-          transitionEnterTimeout={200}
-          transitionLeaveTimeout={200}
-        >
-          {showButtons && (
-            <button
-              className="minusButton"
-              onClick={() => clickButton(schips.current - 1)}
-            >
-              -
-            </button>
-          )}
-          {showButtons && (
-            <button
-              className="plusButton"
-              onClick={() => clickButton(schips.current + 1)}
-            >
-              +
-            </button>
-          )}
-        </CSSTransitionGroup>
+
+        {showButtons && (
+          <button
+            className="minusButton"
+            onClick={() => clickButton(schips.current - 1)}
+          >
+            -
+          </button>
+        )}
+        {showButtons && (
+          <button
+            className="plusButton"
+            onClick={() => clickButton(schips.current + 1)}
+          >
+            +
+          </button>
+        )}
       </div>
     </div>
   );

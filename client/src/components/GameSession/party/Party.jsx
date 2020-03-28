@@ -1,6 +1,8 @@
 import React from "react";
 import Hero from "./Hero/Hero";
 
+import "./Party.scss";
+
 const Party = ({ name, party, heroChangePoints, heroChangeSchips }) => {
   return (
     <div className="Party">

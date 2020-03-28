@@ -1,0 +1,8 @@
+.Party {
+  .partyHeroes {
+    display: grid;
+    padding: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(460px, 1fr));
+    grid-gap: 15px;
+  }
+}
