@@ -107,7 +107,7 @@ const heroes = [
     geschwindigkeit: 7,
     schips: {
       max: 3,
-      current: 0
+      current: 2
     },
     money: "1234"
   },

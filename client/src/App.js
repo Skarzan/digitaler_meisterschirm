@@ -16,6 +16,10 @@ const App = () => {
       heroUpdatePoints(heroId, value, type);
     });
 
+    socketIO.on("heroChangeSchips", function(heroId, value) {
+      heroUpdateSchips(heroId, value);
+    });
+
     socketIO.on("request session", function(socketId) {
       socketIO.emit("send session", session, socketId);
     });
@@ -42,6 +46,18 @@ const App = () => {
     setSession(newState);
   };
 
+  const heroUpdateSchips = (heroId, newValue) => {
+    let newState = { ...session };
+
+    newState.party.find(hero => hero.id === heroId).schips.current = newValue;
+    setSession(newState);
+  };
+
+  const heroChangeSchips = (heroId, newValue) => {
+    heroUpdateSchips(heroId, newValue);
+    socketIO.emit("heroChangeSchips", session.id, heroId, newValue);
+  };
+
   const changeSessionId = id => {
     let newState = { ...session };
     newState.id = id;
@@ -60,6 +76,7 @@ const App = () => {
         <GameSession
           session={session}
           heroChangePoints={heroChangePoints}
+          heroChangeSchips={heroChangeSchips}
           leaveSession={leaveSession}
         ></GameSession>
       ) : (

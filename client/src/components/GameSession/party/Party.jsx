@@ -1,7 +1,7 @@
 import React from "react";
 import Hero from "./Hero/Hero";
 
-const Party = ({ name, party, heroChangePoints }) => {
+const Party = ({ name, party, heroChangePoints, heroChangeSchips }) => {
   return (
     <div className="Party">
       <h2>{name}</h2>
@@ -12,6 +12,7 @@ const Party = ({ name, party, heroChangePoints }) => {
               key={hero.name}
               hero={hero}
               heroChangePoints={heroChangePoints}
+              heroChangeSchips={heroChangeSchips}
             ></Hero>
           );
         })}

@@ -1,9 +1,14 @@
 import React from "react";
 import Bar from "./Bar";
+import Schips from "./Schips";
 
-const Hero = ({ hero, heroChangePoints }) => {
+const Hero = ({ hero, heroChangePoints, heroChangeSchips }) => {
   const changeHeroPoints = (newValue, type) => {
     heroChangePoints(hero.id, newValue, type);
+  };
+
+  const changeHeroSchips = newValue => {
+    heroChangeSchips(hero.id, newValue);
   };
 
   return (
@@ -17,7 +22,7 @@ const Hero = ({ hero, heroChangePoints }) => {
         changeCurrentPoints={changeHeroPoints}
       ></Bar>
 
-      {/*SHow if hero has AsP*/}
+      {/*Show if hero has AsP*/}
       {hero.AsP.max !== 0 && (
         <Bar
           max={hero.AsP.max}
@@ -27,7 +32,7 @@ const Hero = ({ hero, heroChangePoints }) => {
         ></Bar>
       )}
 
-      {/*SHow if hero has KaP*/}
+      {/*Show if hero has KaP*/}
       {hero.KaP.max !== 0 && (
         <Bar
           max={hero.KaP.max}
@@ -36,7 +41,10 @@ const Hero = ({ hero, heroChangePoints }) => {
           changeCurrentPoints={changeHeroPoints}
         ></Bar>
       )}
-      <div className="heroSchips">{`Schips: ${hero.schips.current}/${hero.schips.max}`}</div>
+      <Schips
+        schips={hero.schips}
+        changeCurrentSchips={changeHeroSchips}
+      ></Schips>
       <div className="heroMoney">{`Geldbörse: ${hero.money}`}</div>
     </div>
   );

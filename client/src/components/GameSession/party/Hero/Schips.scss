@@ -1,0 +1,55 @@
+.Schips {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .schipIcon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+  }
+
+  .schipNumbers {
+    position: absolute;
+    border-radius: 10px;
+    background: hsla(0, 0%, 45.5%, 0.781);
+    color: #fff;
+    padding: 2px 15px;
+  }
+
+  .minusButton,
+  .plusButton {
+    position: absolute;
+    top: calc(50% - 11px);
+  }
+
+  .minusButton {
+    left: 0;
+  }
+
+  .plusButton {
+    right: 0;
+  }
+
+  .fade-in-enter {
+    opacity: 0.01;
+  }
+
+  .fade-in-enter.fade-in-enter-active {
+    opacity: 1;
+    transition: opacity 200ms ease-in;
+  }
+
+  .fade-in-leave {
+    opacity: 1;
+  }
+
+  .fade-in-leave.fade-in-leave-active {
+    opacity: 0.01;
+    transition: opacity 200ms ease-in;
+  }
+}

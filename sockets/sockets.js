@@ -56,6 +56,11 @@ module.exports.listen = function(app) {
       console.log(`${heroId} now holds ${value} ${type}`);
     });
 
+    socket.on("heroChangeSchips", function(sessionId, heroId, value) {
+      socket.in(sessionId).broadcast.emit("heroChangeSchips", heroId, value);
+      console.log(`${heroId} now holds ${value} Schips`);
+    });
+
     socket.on("disconnect", function() {
       leaveSession(socket.sessionId, socket.id);
       socket.leave(socket.sessionId);
