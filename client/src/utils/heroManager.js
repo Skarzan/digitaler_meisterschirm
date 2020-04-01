@@ -334,7 +334,7 @@ const heroes = [
       max: 3,
       current: 0
     },
-    money: "1234"
+    money: "143912"
   }
 ];
 

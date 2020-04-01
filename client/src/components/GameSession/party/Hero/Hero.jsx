@@ -16,7 +16,7 @@ const Hero = ({ hero, heroChangePoints, heroChangeSchips }) => {
 
   return (
     <div className="Hero">
-      <h1>{hero.name}</h1>
+      <div className="heroName">{hero.name}</div>
       <div className="heroBody">
         <div>
           <Bar
