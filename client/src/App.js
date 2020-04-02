@@ -6,6 +6,8 @@ import socketIO from "./utils/socketIO";
 import LoginSession from "./components/LoginSession";
 import GameSession from "./components/GameSession/GameSession";
 
+import SetHero from "./components/SetHero";
+
 import sessionMock from "./utils/gameSession";
 
 const App = () => {
@@ -82,6 +84,7 @@ const App = () => {
       ) : (
         <LoginSession submitSessionId={changeSessionId}></LoginSession>
       )}
+      <SetHero givenHero={sessionMock.party[0]}></SetHero>
     </div>
   );
 };
