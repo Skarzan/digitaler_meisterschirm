@@ -8,10 +8,10 @@ const Party = ({ name, party, heroChangePoints, heroChangeSchips }) => {
     <div className="Party">
       <h2>{name}</h2>
       <div className="partyHeroes">
-        {party.map(hero => {
+        {party.map((hero) => {
           return (
             <Hero
-              key={hero.name}
+              key={hero.id}
               hero={hero}
               heroChangePoints={heroChangePoints}
               heroChangeSchips={heroChangeSchips}

@@ -33,7 +33,7 @@ export default {
       zechen: "Zechen"
     },
     gesellschaftstalente: {
-      bekehren_und_ueberzeugen: "Bekeheren & Überzeugen",
+      bekehren_und_ueberzeugen: "Bekehren & Überzeugen",
       betoeren: "Betören",
       einschuechtern: "Einschüchtern",
       etikette: "Etikette",

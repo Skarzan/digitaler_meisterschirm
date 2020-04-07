@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import socketIO from "./utils/socketIO";
 
@@ -14,19 +15,19 @@ const App = () => {
   const [session, setSession] = useState(sessionMock);
 
   useEffect(() => {
-    socketIO.on("heroChangePoints", function(heroId, value, type) {
+    socketIO.on("heroChangePoints", function (heroId, value, type) {
       heroUpdatePoints(heroId, value, type);
     });
 
-    socketIO.on("heroChangeSchips", function(heroId, value) {
+    socketIO.on("heroChangeSchips", function (heroId, value) {
       heroUpdateSchips(heroId, value);
     });
 
-    socketIO.on("request session", function(socketId) {
+    socketIO.on("request session", function (socketId) {
       socketIO.emit("send session", session, socketId);
     });
 
-    socketIO.on("set session", function(session) {
+    socketIO.on("set session", function (session) {
       setSession(session);
     });
 
@@ -44,14 +45,14 @@ const App = () => {
   const heroUpdatePoints = (heroId, newValue, type) => {
     let newState = { ...session };
 
-    newState.party.find(hero => hero.id === heroId)[type].current = newValue;
+    newState.party.find((hero) => hero.id === heroId)[type].current = newValue;
     setSession(newState);
   };
 
   const heroUpdateSchips = (heroId, newValue) => {
     let newState = { ...session };
 
-    newState.party.find(hero => hero.id === heroId).schips.current = newValue;
+    newState.party.find((hero) => hero.id === heroId).schips.current = newValue;
     setSession(newState);
   };
 
@@ -60,7 +61,7 @@ const App = () => {
     socketIO.emit("heroChangeSchips", session.id, heroId, newValue);
   };
 
-  const changeSessionId = id => {
+  const changeSessionId = (id) => {
     let newState = { ...session };
     newState.id = id;
     setSession(newState);
@@ -72,19 +73,37 @@ const App = () => {
     socketIO.emit("leave session");
   };
 
+  const addHero = (hero) => {
+    setSession({
+      ...session,
+      party: [...session.party, hero],
+    });
+  };
+
   return (
     <div className="App">
-      {session.id ? (
-        <GameSession
-          session={session}
-          heroChangePoints={heroChangePoints}
-          heroChangeSchips={heroChangeSchips}
-          leaveSession={leaveSession}
-        ></GameSession>
-      ) : (
-        <LoginSession submitSessionId={changeSessionId}></LoginSession>
-      )}
-      <SetHero givenHero={sessionMock.party[0]}></SetHero>
+      <Router>
+        <Switch>
+          <Route path="/held">
+            <SetHero
+              givenHero={sessionMock.party[0]}
+              submitHero={addHero}
+            ></SetHero>
+          </Route>
+          <Route path="/">
+            {session.id ? (
+              <GameSession
+                session={session}
+                heroChangePoints={heroChangePoints}
+                heroChangeSchips={heroChangeSchips}
+                leaveSession={leaveSession}
+              ></GameSession>
+            ) : (
+              <LoginSession submitSessionId={changeSessionId}></LoginSession>
+            )}
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 };
