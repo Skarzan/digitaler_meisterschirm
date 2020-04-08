@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 import heroMock from "../utils/heroMock";
-import { withRouter, useHistory } from "react-router-dom";
 
 const Input = ({ name, value, changeValue, type = "number" }) => {
   return (
@@ -128,8 +127,6 @@ const blankHero = {
  * @param {string} hero hero that is about to change
  */
 const SetHero = ({ givenHero = blankHero, submitHero }) => {
-  let history = useHistory();
-
   const [hero, setHero] = useState({ ...givenHero });
 
   //TODO: set id based on existing ones in DB
@@ -171,9 +168,7 @@ const SetHero = ({ givenHero = blankHero, submitHero }) => {
       };
     }
 
-    console.log(heroWithID);
     submitHero(heroWithID);
-    history.push("/");
   };
 
   return (
@@ -543,4 +538,4 @@ const SetHero = ({ givenHero = blankHero, submitHero }) => {
   );
 };
 
-export default withRouter(SetHero);
+export default SetHero;
