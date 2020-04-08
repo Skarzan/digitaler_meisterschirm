@@ -85,10 +85,7 @@ const App = () => {
       <Router>
         <Switch>
           <Route path="/held">
-            <SetHero
-              givenHero={sessionMock.party[0]}
-              submitHero={addHero}
-            ></SetHero>
+            <SetHero submitHero={addHero}></SetHero>
           </Route>
           <Route path="/">
             {session.id ? (
