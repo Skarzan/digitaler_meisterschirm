@@ -5,12 +5,12 @@ import socketIO from "../../utils/socketIO";
 
 import sessionMock from "../../utils/gameSession";
 
-const GameSession = ({ sessionID }) => {
-  const [session, setSession] = useState({ ...sessionMock, id: sessionID });
-
-  useEffect(() => {
-    socketIO.emit("enter session", session.id);
-  }, []);
+const GameSession = ({ sessionID, hero }) => {
+  const [session, setSession] = useState({
+    ...sessionMock,
+    id: sessionID,
+    party: [hero],
+  });
 
   useEffect(() => {
     socketIO.on("heroChangePoints", function (heroId, value, type) {
@@ -25,8 +25,20 @@ const GameSession = ({ sessionID }) => {
       socketIO.emit("send session", session, socketId);
     });
 
-    socketIO.on("set session", function (session) {
-      setSession(session);
+    socketIO.on("set session", function (newSession) {
+      setSession({ ...newSession, party: [...newSession.party, hero] });
+    });
+
+    socketIO.on("add hero", function (hero) {
+      setSession({ ...session, party: [...session.party, hero] });
+    });
+
+    socketIO.on("delete hero", function (heroID) {
+      // delete hero from party
+      const newParty = session.party.filter((obj) => {
+        return obj.id !== heroID;
+      });
+      setSession({ ...session, party: [...newParty] });
     });
 
     return () => {

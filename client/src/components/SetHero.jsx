@@ -141,7 +141,10 @@ const SetHero = ({ givenHero = blankHero, submitHero }) => {
 
     // set current LeP
     if (!hero.LeP.current || hero.LeP.current > hero.LeP.max) {
-      heroWithID = { ...hero, LeP: { ...hero.LeP, current: hero.LeP.max } };
+      heroWithID = {
+        ...heroWithID,
+        LeP: { ...hero.LeP, current: hero.LeP.max },
+      };
     }
 
     // set current AsP

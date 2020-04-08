@@ -6,13 +6,13 @@ const session = {
   players: [
     {
       socketId: "",
-      name: ""
-    }
+      name: "",
+    },
   ],
-  party: heroes,
+  party: [],
   battle: {
-    fighters: []
-  }
+    fighters: [],
+  },
 };
 
 export default session;
