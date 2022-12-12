@@ -13,7 +13,7 @@
   "author": "Christian Kohls",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "node-sass": "^4.13.1",
     "path": "^0.12.7",
     "react-router-dom": "^5.1.2",
